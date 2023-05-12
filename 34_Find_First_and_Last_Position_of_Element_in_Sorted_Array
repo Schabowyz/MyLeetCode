@@ -1,0 +1,25 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        first = -1
+        last = -1
+        length = len(nums)
+
+        # Finds 1st number
+        for i in range(length):
+            if nums[i] == target:
+                first = i
+                break
+
+        # Finds second number if there was a first
+        if first != -1:
+            for i in range(first, length):
+                try:
+                    if nums[i + 1] != nums[first]:
+                        last = i
+                        break
+                except IndexError:
+                    if nums[i] == target:
+                        last = i
+
+        
+        return [first, last]
